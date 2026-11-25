@@ -1,0 +1,371 @@
+.perfil {
+  max-width: 64rem;
+}
+
+/* ===== Tarjeta única: portada + identidad + cuerpo seccionado ===== */
+.perfil__tarjeta {
+  overflow: hidden;
+  border-radius: var(--radio);
+  border: var(--borde-grosor) solid var(--color-borde);
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--color-primario) 4%, var(--color-superficie)), var(--color-superficie) 45%);
+  box-shadow: var(--sombra);
+}
+
+/* Banda superior con el degradado del tema. */
+.perfil__portada {
+  position: relative;
+  height: 4.5rem;
+  background:
+    radial-gradient(42rem 14rem at 12% -20%, var(--brillo-primario, transparent), transparent 70%),
+    radial-gradient(26rem 12rem at 88% 130%, color-mix(in srgb, var(--color-acento-vivo, var(--color-primario)) 30%, transparent), transparent 70%),
+    var(--degradado-primario, var(--color-primario));
+}
+
+.perfil__portada::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(3px 3px at 18% 62%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(2px 2px at 42% 28%, rgba(255, 255, 255, 0.28), transparent 60%),
+    radial-gradient(2.5px 2.5px at 67% 58%, rgba(255, 255, 255, 0.3), transparent 60%),
+    radial-gradient(2px 2px at 84% 30%, rgba(255, 255, 255, 0.25), transparent 60%);
+}
+
+/* Identidad: avatar y texto en fila, bajo la portada. */
+.perfil__identidad {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  padding: 1.25rem 2rem 0.25rem;
+}
+
+.perfil__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 26px 26px 26px 8px;
+  background: var(--degradado-primario);
+  color: var(--color-sobre-primario);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  box-shadow: 0 12px 28px var(--brillo-primario, color-mix(in srgb, var(--color-primario) 25%, transparent));
+}
+
+.perfil__presentacion {
+  min-width: 0;
+  padding-top: 0;
+}
+
+.perfil__sobretitulo {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primario);
+}
+
+.perfil__presentacion h1 {
+  margin: 0.1rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.perfil__presentacion p:not(.perfil__sobretitulo) {
+  margin: 0.2rem 0 0;
+  color: var(--color-texto-suave);
+  font-size: 0.92rem;
+}
+
+.perfil__rol-chip {
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-top: 0;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: var(--borde-grosor) solid color-mix(in srgb, var(--color-primario) 35%, var(--color-borde));
+  background: color-mix(in srgb, var(--color-primario-suave) 55%, var(--color-superficie));
+  color: var(--color-primario);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Cuerpo: dos columnas separadas por divisor; solicitud a ancho completo. */
+.perfil__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+}
+
+.perfil__seccion {
+  padding: 1.5rem 2rem;
+  min-width: 0;
+}
+
+.perfil__seccion--ancha {
+  grid-column: 1 / -1;
+  border-top: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+}
+
+@media (min-width: 56rem) {
+  .perfil__cuerpo {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+
+  .perfil__seccion--lateral {
+    border-left: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+    background: color-mix(in srgb, var(--color-primario) 2.5%, var(--color-superficie));
+  }
+
+  /* Con un solo rol no hay sección "Mis roles": la solicitud ocupa su lugar. */
+  .perfil__cuerpo--sin-roles .perfil__seccion--ancha {
+    grid-column: 2;
+    grid-row: 1;
+    border-top: 0;
+    border-left: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+    background: color-mix(in srgb, var(--color-primario) 2.5%, var(--color-superficie));
+  }
+}
+
+/* Título de sección: versalitas con barra de degradado. */
+.perfil__seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--color-texto-suave);
+}
+
+.perfil__seccion-titulo::before {
+  content: '';
+  flex: none;
+  width: 0.9rem;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--degradado-primario, var(--color-primario));
+}
+
+/* ===== Datos personales ===== */
+.perfil__datos {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0;
+  margin: 0;
+}
+
+.perfil__datos dt,
+.perfil__datos dd {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-borde) 55%, transparent);
+}
+
+.perfil__datos dt:nth-last-of-type(1),
+.perfil__datos dd:last-of-type {
+  border-bottom: 0;
+}
+
+.perfil__datos dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding-right: 1.25rem;
+  color: var(--color-texto-suave);
+  display: flex;
+  align-items: center;
+}
+
+.perfil__datos dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.perfil__nota {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+.perfil__linea {
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+}
+
+/* ===== Roles ===== */
+.perfil__roles {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.perfil__rol {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border: var(--borde-grosor) solid var(--color-borde);
+  border-radius: var(--radio-pequeno);
+  background: var(--color-superficie);
+  transition: transform var(--duracion-rapida) ease, border-color var(--duracion-rapida) ease, box-shadow var(--duracion-rapida) ease;
+}
+
+.perfil__rol:hover {
+  border-color: color-mix(in srgb, var(--color-primario) 40%, var(--color-borde));
+  transform: translateX(3px);
+  box-shadow: var(--sombra);
+}
+
+.perfil__rol--activo,
+.perfil__rol--activo:hover {
+  border-color: color-mix(in srgb, var(--color-primario) 55%, var(--color-borde));
+  background: linear-gradient(90deg, var(--color-primario-suave), color-mix(in srgb, var(--color-primario-suave) 40%, var(--color-superficie)));
+  box-shadow: inset 3px 0 0 var(--color-primario);
+  transform: none;
+}
+
+.perfil__insignia {
+  margin-left: 0.6rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: var(--degradado-primario, var(--color-primario));
+  color: var(--color-sobre-primario);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 3px 8px var(--brillo-primario);
+}
+
+/* ===== Solicitud de productor ===== */
+.perfil__solicitud {
+  display: grid;
+  gap: 0.55rem;
+  max-width: 34rem;
+}
+
+.perfil__solicitud label {
+  font-weight: 600;
+}
+
+.perfil__solicitud select,
+.perfil__solicitud textarea,
+.perfil__comunidad-nueva input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: var(--borde-grosor) solid var(--color-borde-control);
+  border-radius: var(--radio-pequeno);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  transition: border-color var(--duracion-rapida) ease, box-shadow var(--duracion-rapida) ease;
+}
+
+.perfil__solicitud select:focus,
+.perfil__solicitud textarea:focus,
+.perfil__comunidad-nueva input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 4px var(--brillo-primario, color-mix(in srgb, var(--color-primario) 13%, transparent));
+}
+
+.perfil__solicitud textarea {
+  resize: vertical;
+}
+
+.perfil__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.perfil__acciones {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.perfil__solicitud .perfil__casilla {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.perfil__casilla input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--color-primario);
+}
+
+.perfil__comunidad-nueva {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  border: var(--borde-grosor) solid var(--color-borde);
+  border-radius: var(--radio-pequeno);
+}
+
+.perfil__comunidad-nueva legend {
+  padding: 0 0.3rem;
+  font-weight: 700;
+}
+
+/* ===== Móvil ===== */
+@media (max-width: 40rem) {
+  .perfil__identidad {
+    padding: 0 1.25rem 0.25rem;
+  }
+
+  .perfil__avatar {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.2rem;
+  }
+
+  .perfil__rol-chip {
+    margin: 0.75rem 0 0;
+  }
+
+  .perfil__seccion {
+    padding: 1.25rem;
+  }
+
+  .perfil__seccion + .perfil__seccion {
+    border-top: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+  }
+}
+
+/* ===== Alto contraste: colores planos ===== */
+[data-contraste='alto'] .perfil__portada {
+  background: var(--color-primario);
+}
+
+[data-contraste='alto'] .perfil__avatar {
+  background: var(--color-primario);
+}
+
+[data-contraste='alto'] .perfil__portada::after {
+  display: none;
+}
+
+[data-contraste='alto'] .perfil__rol-chip {
+  background: var(--color-primario-suave);
+}
+
+[data-contraste='alto'] .perfil__rol--activo {
+  background: var(--color-primario-suave);
+}

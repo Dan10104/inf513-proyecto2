@@ -1,0 +1,24 @@
+.inicio { display: grid; gap: clamp(1.5rem, 4vw, 3rem); margin-inline: auto; max-width: 76rem; }
+.inicio__portada { display: grid; background: var(--color-superficie); border: 1px solid var(--color-borde); border-radius: var(--radio); overflow: clip; }
+.inicio__portada--foto { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); }
+.inicio__texto { align-self: center; padding: clamp(1.25rem, 4.5vw, 4rem); }
+.inicio__texto h1 { font-size: clamp(2rem, 4vw, 3.65rem); line-height: 1.05; max-width: 15ch; margin-bottom: .45em; }
+.inicio__texto p { max-width: 44ch; color: var(--color-texto-suave); margin-bottom: 1.4rem; }
+.inicio__accion { display: inline-flex; align-items: center; gap: 1rem; min-height: 44px; padding: .65rem 1.15rem; background: var(--color-primario); color: var(--color-sobre-primario); text-decoration: none; font-weight: 700; border-radius: var(--radio-pequeno); }
+.inicio__accion:hover { color: var(--color-sobre-primario); background: var(--color-primario-hover); }
+.inicio__producto { display: grid; grid-template-rows: minmax(0,1fr) auto; align-content: start; color: var(--color-texto); text-decoration: none; min-width: 0; }
+.inicio__foto { position: relative; display: block; min-height: clamp(13rem, 23vw, 20rem); }
+.inicio__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+.inicio__ficha { display: flex; align-items: baseline; justify-content: space-between; gap: .3rem .9rem; flex-wrap: wrap; padding: .7rem 1.2rem; border-top: 1px solid var(--color-borde); }
+.inicio__ficha span { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.inicio__ficha small { flex-basis: 100%; color: var(--color-texto-suave); }
+.inicio__ficha small svg { vertical-align: middle; }
+.inicio__categorias { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(15rem,100%),1fr)); gap: 0 1.5rem; }
+.inicio__categorias a { display:flex; align-items:center; justify-content:space-between; min-height:44px; gap: .5rem; padding:.65rem .2rem; color:var(--color-texto); text-decoration:none; border-bottom:1px solid var(--color-borde); }
+.inicio__categorias a:hover { color:var(--color-primario); text-decoration:underline; }
+.inicio--cuenta { justify-items: start; gap: 1rem; }
+@media (max-width: 45rem) {
+  .inicio__portada--foto { grid-template-columns: minmax(0,1fr); }
+  .inicio__foto { min-height: clamp(8rem,38vw,14rem); }
+  .inicio__texto h1 { max-width: 19ch; }
+}
